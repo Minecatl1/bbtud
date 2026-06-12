@@ -90,7 +90,7 @@ jobs:
           
           # 8. Generate the dynamic launch script
           SCRIPT_NAME="run_${REPO_NAME}.sh"
-          LAUNCH_PATH="./${REPO_NAME}/${SCRIPT_NAME}"
+          LAUNCH_PATH='./"'"${REPO_NAME}"'"/"'"${SCRIPT_NAME}"'"'
           
           echo '#!/bin/bash' > "$LAUNCH_PATH"
           echo '# Navigate to the script directory to resolve relative file dependencies' >> "$LAUNCH_PATH"
@@ -99,7 +99,7 @@ jobs:
           echo "echo \"Launching ${REPO_NAME}...\"" >> "$LAUNCH_PATH"
           
           # Point the shell directly to the discovered relative binary location
-          echo "./$TARGET_BINARY \"\$@\"" >> "$LAUNCH_PATH"
+          echo "./\"$TARGET_BINARY\" \"\$@\"" >> "$LAUNCH_PATH"
           
           # 9. Set permissions across the directory bundle
           chmod +x "$LAUNCH_PATH"
